@@ -9,24 +9,20 @@ package midtermexamw25_93317_partb;
  * @author Admin
  */
 
+
+    
 public class Item {
+    // Encapsulation: private variables, public getters/setters
     private String name;
     private double price;
     private int quantity;
 
-    // Parameterized constructor
     public Item(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 
-    // Method to check if the item is available
-    public boolean isAvailable() {
-        return quantity > 0;
-    }
-
-    // Getters and setters
     public String getName() {
         return name;
     }
@@ -49,6 +45,11 @@ public class Item {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    // Encapsulation: Business logic encapsulated in methods
+    public boolean isAvailable() {
+        return quantity > 0;
     }
 
     @Override

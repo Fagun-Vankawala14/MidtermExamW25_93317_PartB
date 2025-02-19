@@ -24,20 +24,17 @@ public class Inventory {
     }
 
     // List all items in the inventory
-    public void listItems() {
-        System.out.println("Inventory List:");
-        for (Item item : items) {
-            System.out.println(item);
-        }
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
-    // Method to get an item by name
+    // Get item by name
     public Item getItemByName(String name) {
         for (Item item : items) {
             if (item.getName().equalsIgnoreCase(name)) {
                 return item;
             }
         }
-        return null;  // Return null if the item is not found
+        return null;  // Return null if item not found
     }
 }

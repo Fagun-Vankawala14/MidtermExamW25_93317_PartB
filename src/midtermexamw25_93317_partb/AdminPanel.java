@@ -11,28 +11,42 @@ package midtermexamw25_93317_partb;
 
 import java.util.Scanner;
 
-public class AdminPanel {
 
+
+public class AdminPanel {
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
+
+        // Add items to inventory (admin logic)
+        inventory.addItem(new Item("Laptop", 1200.99, 10));
+        inventory.addItem(new Item("Phone", 700.50, 0));
+
+        // Display available items to the customer
+        displayInventory(inventory);
+
+        // Customer selects an item
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the item name you want to select: ");
+        String selectedItemName = scanner.nextLine();
 
-        // Simulating admin adding new items
-        System.out.println("Admin: Add new inventory item");
-        System.out.print("Enter item name: ");
-        String name = scanner.nextLine();
+        // Check if the item is available and process selection
+        Item selectedItem = inventory.getItemByName(selectedItemName);
+        if (selectedItem != null) {
+            if (selectedItem.isAvailable()) {
+                System.out.println("You have successfully selected the item: " + selectedItem);
+            } else {
+                System.out.println("Sorry, the item is out of stock.");
+            }
+        } else {
+            System.out.println("Item not found.");
+        }
+    }
 
-        System.out.print("Enter item price: ");
-        double price = scanner.nextDouble();
-
-        System.out.print("Enter item quantity: ");
-        int quantity = scanner.nextInt();
-
-        // Create the new item and add to inventory
-        Item newItem = new Item(name, price, quantity);
-        inventory.addItem(newItem);
-
-        // List the inventory
-        inventory.listItems();
+    // Method to display inventory
+    public static void displayInventory(Inventory inventory) {
+        System.out.println("Items available in the inventory:");
+        for (Item item : inventory.getItems()) {
+            System.out.println(item);
+        }
     }
 }
