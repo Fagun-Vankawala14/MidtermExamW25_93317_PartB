@@ -47,7 +47,18 @@ public class VendingMachineItem {
     public void setPrice(double givenPrice) {
         price = givenPrice;
     }
-    
+    public static void selectItem(int itemIndex) {
+    if (itemIndex < 0 || itemIndex >= candies.length) {
+        System.out.println("Invalid selection.");
+        return;
+    }
+
+    if (itemAvailability[itemIndex]) {
+        System.out.println("You have selected: " + candies[itemIndex] + " for $" + prices[itemIndex]);
+    } else {
+        System.out.println(candies[itemIndex] + " is not available.");
+    }
+}
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
         for (int i = 0; i < 4; i++) {
