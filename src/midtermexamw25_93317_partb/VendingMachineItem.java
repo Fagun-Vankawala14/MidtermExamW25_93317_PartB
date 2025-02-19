@@ -1,18 +1,20 @@
 package midtermexamw25_93317_partb;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VendingMachineItem {
-    public double price;
+    private double price;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
+    // Using ArrayLists instead of fixed arrays
+    public static ArrayList<String> candies = new ArrayList<>();
+    public static ArrayList<Double> prices = new ArrayList<>();
+    public static ArrayList<Boolean> itemAvailability = new ArrayList<>();
+
     public VendingMachineItem() {
         // Constructor left blank intentionally
     }
-    
+
     public double getPrice() {
         return price;
     }
@@ -23,13 +25,43 @@ public class VendingMachineItem {
     
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
+        for (int i = 0; i < candies.size(); i++) {
+            System.out.println((i+1) + ". " + candies.get(i) + " - $" + prices.get(i));
         }
     }
-       
-    public static void main(String[] args) {
+
+    // Admin functionality to add a new item to the inventory
+    public static void addItem() {
         Scanner sc = new Scanner(System.in);
-        displayMenu();
-      }
+        System.out.print("Enter item name: ");
+        String itemName = sc.nextLine();
+        System.out.print("Enter item price: ");
+        double itemPrice = sc.nextDouble();
+        sc.nextLine(); // Consume newline
+        
+        candies.add(itemName);
+        prices.add(itemPrice);
+        itemAvailability.add(true); // Newly added items are available by default
+
+        System.out.println("Item added successfully!");
+    }
+
+    // Hardcoded initial inventory values
+    static {
+        candies.add("chocolate bar");
+        prices.add(1.50);
+        itemAvailability.add(true);
+
+        candies.add("sour candy");
+        prices.add(1.20);
+        itemAvailability.add(true);
+
+        candies.add("soft drink");
+        prices.add(1.80);
+        itemAvailability.add(true);
+
+        candies.add("potato chips");
+        prices.add(2.00);
+        itemAvailability.add(true);
+    }
 }
