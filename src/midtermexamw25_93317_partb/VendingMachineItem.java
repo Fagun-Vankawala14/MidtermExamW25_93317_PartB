@@ -46,12 +46,32 @@ public class VendingMachineItem {
         newPrices[prices.length] = itemPrice;
         newItemAvailability[itemAvailability.length] = availability;
         
-        
         candies = newCandies;
         prices = newPrices;
         itemAvailability = newItemAvailability;
 
         System.out.println("New item added: " + itemName);
+    }
+
+    // Customer selects an item and checks availability
+    public static void selectItem(String itemName) {
+        boolean itemFound = false;
+        
+        for (int i = 0; i < candies.length; i++) {
+            if (candies[i].equalsIgnoreCase(itemName)) {
+                itemFound = true;
+                if (itemAvailability[i]) {
+                    System.out.println(itemName + " is available for $" + prices[i]);
+                } else {
+                    System.out.println(itemName + " is currently unavailable.");
+                }
+                break;
+            }
+        }
+        
+        if (!itemFound) {
+            System.out.println("Item not found. Please select a valid item.");
+        }
     }
 
     public static void main(String[] args) {
@@ -70,8 +90,13 @@ public class VendingMachineItem {
             boolean itemAvailable = sc.nextBoolean();
             addNewItem(itemName, itemPrice, itemAvailable);
         }
-
-       
+        
+        // Customer selects an item and checks availability
         displayMenu();
+        System.out.println("\nCustomer: Please select an item by name to check its availability:");
+        String customerItem = sc.nextLine();
+        selectItem(customerItem); // Check if the item is available
+
+        sc.close(); // Close the scanner to avoid resource leaks
     }
 }
