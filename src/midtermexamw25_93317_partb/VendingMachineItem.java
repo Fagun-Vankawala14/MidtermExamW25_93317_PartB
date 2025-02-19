@@ -3,30 +3,47 @@ package midtermexamw25_93317_partb;
 import java.util.Scanner;
 
 public class VendingMachineItem {
-    public double price;
+    private double price;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
+ private static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
+private static double[] prices = {1.50, 1.20, 1.80, 2.00};
+private static boolean[] itemAvailability = {true, true, true, true};
+
     public VendingMachineItem(double price) {
     this.price = price;
 }
 
     
+    // ✅ Getter & Setter for encapsulation
     public double getPrice() {
         return price;
     }
-    
+
     public void setPrice(double givenPrice) {
         price = givenPrice;
     }
-    
+    // ✅ Getter methods for encapsulated arrays
+    public static String[] getCandies() {
+        return candies;
+    }
+
+    public static double[] getPrices() {
+        return prices;
+    }
+
+    public static boolean[] getItemAvailability() {
+        return itemAvailability;
+    }
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < candies.length; i++) {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
+    }
+    
+    public static void showMenu() {
+        System.out.println("===== Vending Machine Menu =====");
+        displayMenu();
     }
       public static void addItem(String newItem, double newPrice) {
     int newSize = candies.length + 1;
@@ -69,10 +86,47 @@ public class VendingMachineItem {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        displayMenu();
+        boolean running = true;
         
-        System.out.print("Select an item number: ");
-        int selection = sc.nextInt();
-        selectItem(selection);
-      }
+        while (running) {
+            showMenu();  // ✅ Using showMenu() instead of displayMenu()
+
+            System.out.println("\nOptions:");
+            System.out.println("1. Select an item");
+            System.out.println("2. Add a new item");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Select an item number: ");
+                    int selection = sc.nextInt();
+                    selectItem(selection);
+                    break;
+
+                case 2:
+                    sc.nextLine(); // ✅ Clear scanner buffer
+                    System.out.print("Enter new item name: ");
+                    String newItem = sc.nextLine();
+                    System.out.print("Enter new item price: ");
+                    double newPrice = sc.nextDouble();
+                    addItem(newItem, newPrice);
+                    break;
+
+                case 3:
+                    System.out.println("Thank you for using the vending machine. Goodbye!");
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            System.out.println(); // ✅ For better spacing in the UI
+        }
+
+        sc.close(); // ✅ Close Scanner resource
+    }
 }
+
