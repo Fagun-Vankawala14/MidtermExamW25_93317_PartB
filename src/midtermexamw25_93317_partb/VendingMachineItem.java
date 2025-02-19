@@ -52,7 +52,19 @@ public class VendingMachineItem {
 
         System.out.println("Item added successfully!");
     }
-       
+      
+    
+        // it will allow customer to see if the item is available
+    public static boolean checkItemAvailability(String itemName) {
+        for (int i = 0; i < candies.length; i++) {
+            if (candies[i].equalsIgnoreCase(itemName) && itemAvailability[i]) {
+                return true;  // Item available
+            }
+        }
+        return false;  // Item unavailabe or not found
+    }
+    
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
@@ -73,6 +85,17 @@ public class VendingMachineItem {
         // this will display updated menu
         displayMenu();
 
+        // it will allow customer to select item to check its availability
+        System.out.println("\nCustomer, please enter the name of the item you'd like to check:");
+        String customerItem = sc.nextLine(); 
+        customerItem = sc.nextLine();
+
+        if (checkItemAvailability(customerItem)) {
+            System.out.println(customerItem + " is available.");
+        } else {
+            System.out.println(customerItem + " is not available.");
+        }
+        
     }
       
 }
