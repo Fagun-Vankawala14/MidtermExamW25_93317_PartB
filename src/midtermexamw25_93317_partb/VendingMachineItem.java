@@ -53,7 +53,7 @@ public class VendingMachineItem {
         System.out.println(newItem + " added successfully!");
     }
 
-    // Display menu
+    
     public static void displayMenu() {
         System.out.println("\nVending Machine Inventory:");
         for (int i = 0; i < items.size(); i++) {
@@ -62,17 +62,38 @@ public class VendingMachineItem {
         }
     }
 
+     public static void selectItem(Scanner sc) {
+        System.out.print("\nEnter the item number to purchase: ");
+        int choice = sc.nextInt();
+
+        if (choice < 1 || choice > items.size()) {
+            System.out.println("Invalid selection.");
+            return;
+        }
+
+        int index = choice - 1;
+        if (availability.get(index)) {
+            System.out.println("You have purchased: " + items.get(index) + " for $" + prices.get(index));
+            availability.set(index, false); 
+        } else {
+            System.out.println("Sorry, " + items.get(index) + " is out of stock.");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
 
         System.out.print("\nAre you an Admin? (yes/no): ");
-        if (sc.next().equalsIgnoreCase("yes")) {
+        String response = sc.next().toLowerCase();
+
+        if (response.equals("yes") || response.equals("y")) {
             addNewItem(sc);
             displayMenu();
         } else {
-            System.out.println("Access Denied.");
+            selectItem(sc);
         }
+
         sc.close();
     }
 }
