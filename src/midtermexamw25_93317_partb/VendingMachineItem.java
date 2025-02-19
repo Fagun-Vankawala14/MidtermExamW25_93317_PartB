@@ -1,5 +1,6 @@
 package midtermexamw25_93317_partb;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class VendingMachineItem {
@@ -23,7 +24,7 @@ public class VendingMachineItem {
     
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < candies.length; i++) {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
@@ -31,5 +32,40 @@ public class VendingMachineItem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        
+        VendingMachineItem vendingMachineItem = new VendingMachineItem();
+        
+        System.out.println("Are you an admin? (yes/no)");
+        
+        String isAdmin = sc.nextLine().toLowerCase();
+
+        if (isAdmin.equals("yes")) {
+            System.out.println("Enter the name of the new item:");
+            String newItem = sc.nextLine();
+
+            System.out.println("Enter the price of the new item:");
+            double newPrice = sc.nextDouble();
+            sc.nextLine();
+
+            vendingMachineItem.addItem(newItem, newPrice);
+            
+        } else {
+            System.out.println("You do not have permission to add items.");
+        }
+        
+        displayMenu();
+        sc.close();
       }
-}
+    
+    public void addItem(String candy, double price){
+        
+        candies = Arrays.copyOf(candies, candies.length + 1);
+        prices = Arrays.copyOf(prices, prices.length + 1);
+        itemAvailability = Arrays.copyOf(itemAvailability, itemAvailability.length + 1);
+        
+        candies[candies.length - 1] = candy;
+        prices[prices.length - 1] = price;
+        itemAvailability[itemAvailability.length - 1] = true;}
+    
+  
+    }
