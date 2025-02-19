@@ -3,21 +3,21 @@ package midtermexamw25_93317_partb;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class VendingMachineItem {
-    public double price;
+    private double price;
     
-    public static List<String> candies = new ArrayList<>(Arrays.asList("chocolate bar", "sour candy", "soft drink", "potato chips"));
-    public static List<Double> prices = new ArrayList<>(Arrays.asList(1.50, 1.20, 1.80, 2.00));
-    public static List<Boolean> itemAvailability = new ArrayList<>(Arrays.asList(true, true, true, true));
-
+    private static List<String> candies = new ArrayList<>(Arrays.asList("chocolate bar", "sour candy", "soft drink", "potato chips"));
+    private static List<Double> prices = new ArrayList<>(Arrays.asList(1.50, 1.20, 1.80, 2.00));
+    private static List<Boolean> itemAvailability = new ArrayList<>(Arrays.asList(true, true, true, true));
     
     public VendingMachineItem(double price) {
         this.price = price;
     }
     
-    public static void addItem(String candy, double price, boolean available) {
+    static void addNewItem(String candy, double price, boolean available) {
         candies.add(candy);
         prices.add(price);
         itemAvailability.add(available);
@@ -29,6 +29,18 @@ public class VendingMachineItem {
     
     public void setPrice(double givenPrice) {
         price = givenPrice;
+    }
+    
+    public static List<String> getCandies() {
+        return Collections.unmodifiableList(candies);
+    }
+    
+    public static List<Double> getPrices() {
+        return Collections.unmodifiableList(prices);
+    }
+    
+    public static List<Boolean> getAvailability() {
+        return Collections.unmodifiableList(itemAvailability);
     }
     
     public static void displayMenu() {
