@@ -52,6 +52,18 @@ public class VendingMachineItem {
     itemAvailability = newAvailability;
 }
 
+    public static boolean isItemAvailable(int index) {
+    if (index < 0 || index >= itemAvailability.length) return false;
+    return itemAvailability[index];
+}
+
+public static String selectItem(int index) {
+    if (isItemAvailable(index)) {
+        return candies[index];
+    }
+    return null;
+}
+
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
