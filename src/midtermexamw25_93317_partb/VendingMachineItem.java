@@ -13,6 +13,13 @@ public class VendingMachineItem {
         // Constructor left blank intentionally
     }
     
+    
+    //added by khaled
+    // parameterrize constructor
+    public VendingMachineItem(double price) {
+    this.price = price; // Set the price of the item
+    }
+    
     public double getPrice() {
         return price;
     }
