@@ -4,17 +4,23 @@ import java.util.Scanner;
 
 public class VendingMachineItem {
     public double price;
+    public String name;
+    public boolean availability;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
-    public VendingMachineItem(String name, double price) {
+public VendingMachineItem(String name, double price) {
     this.name = name;
     this.price = price;
     this.availability = true; 
 
     }
+
+    
+    
+    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
+    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
+    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    
+   
     public static void addItem(String itemName, double itemPrice) {
    
     String[] newCandies = new String[candies.length + 1];
@@ -68,6 +74,20 @@ public class VendingMachineItem {
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        
         displayMenu();
       }
 }
+// Single Responsibility Principle: 
+// The VendingMachineItem class is responsible for representing individual items, 
+// including their properties (name, price, availability). 
+// The VendingMachine class is responsible for managing the inventory of items, 
+// including adding items, displaying the menu, and selecting items. 
+// This separation of concerns makes the code easier to maintain and understand.
+
+// Open/Closed Principle: 
+// The VendingMachineItem class can be extended for new item types without modifying 
+// the existing code. For example, if we want to create a special item with additional 
+// features, we can create a subclass of VendingMachineItem without changing the 
+// existing implementation. This allows the system to be extended with new functionality 
+// while keeping the existing code intact.
