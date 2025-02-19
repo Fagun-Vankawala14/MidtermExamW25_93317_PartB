@@ -35,6 +35,22 @@ public class VendingMachineItem {
         }
     }
     
+    // function to select items based on availablity
+    public static void selectItem() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Item number: ");
+        int userSelect = sc.nextInt();
+            if (itemAvailability.get(userSelect) == true) {
+                System.out.println("Item is available");  
+                System.out.println("Item selected: " + candies.get(userSelect - 1) + " - $" + prices.get(userSelect - 1));
+            } 
+            else {
+                System.out.println("Item is not available");
+            }
+     
+        
+    }
+    
     public static void addItems() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Candy Name: ");
@@ -64,6 +80,7 @@ public class VendingMachineItem {
         
         Scanner sc = new Scanner(System.in);
         displayMenu();
-        addItems();
+//        addItems(); for admin tests
+        selectItem();
       }
 }
