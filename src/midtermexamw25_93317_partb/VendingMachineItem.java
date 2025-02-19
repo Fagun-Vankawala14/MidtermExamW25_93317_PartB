@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 public class VendingMachineItem {
     public double price;
+    public String newItem;
     
     public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     public static String[] newItems = {"Item One","Item Two"};
 
-    public VendingMachineItem(double price) {
+    public VendingMachineItem(double price , String newItem) {
         this.price = price;
+        this.newItem = newItem;
     }
     
     public static String[] getCandies() {
