@@ -15,7 +15,22 @@ public class VendingMachineItem {
     public static List <Double> prices = new ArrayList<>();
     public static List <Boolean> itemAvailability = new ArrayList<>();
     public VendingMachineItem() {
-        // Constructor left blank intentionally
+  
+            candies.add("chocolate bar");
+            prices.add(1.50);
+            itemAvailability.add(true);
+
+            candies.add("sour candy");
+            prices.add(1.20);
+            itemAvailability.add(true);
+
+            candies.add("soft drink");
+            prices.add(1.80);
+            itemAvailability.add(true);
+
+            candies.add("potato chips");
+            prices.add(2.00);
+            itemAvailability.add(true);
     }
     
     public double getPrice() {
@@ -41,23 +56,7 @@ public class VendingMachineItem {
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        // Initial Items that were present in the code before
-        candies.add("chocolate bar");
-        prices.add(1.50);
-        itemAvailability.add(true);
-
-        candies.add("sour candy");
-        prices.add(1.20);
-        itemAvailability.add(true);
-
-        candies.add("soft drink");
-        prices.add(1.80);
-        itemAvailability.add(true);
-
-        candies.add("potato chips");
-        prices.add(2.00);
-        itemAvailability.add(true);
+        VendingMachineItem vendingMachine = new VendingMachineItem();
         displayMenu();
         
 //        Asking to add
