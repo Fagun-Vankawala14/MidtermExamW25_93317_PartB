@@ -50,6 +50,25 @@ public class VendingMachineItem {
     itemAvailability.add(true);
     
     System.out.println("New item added successfully!");
-}
+    }
+    
+     public static void selectItem() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please select an item by entering its number:");
+
+        int itemNumber = sc.nextInt();
+        if (itemNumber > 0 && itemNumber <= candies.size()) {
+            int index = itemNumber - 1;
+            if (itemAvailability.get(index)) {
+                System.out.println("You selected: " + candies.get(index) + " for $" + prices.get(index));
+                System.out.println("Item is available, proceeding with purchase...");
+                itemAvailability.set(index, false);
+            } else {
+                System.out.println("Sorry, this item is out of stock. Please choose another item.");
+            }
+        } else {
+            System.out.println("Invalid selection");
+        }
+    }
 
 }
