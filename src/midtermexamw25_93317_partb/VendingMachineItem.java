@@ -43,6 +43,17 @@ public class VendingMachineItem {
             }
         }
     }
+    
+    public void selectItem(String itemName) {
+        for(int i =0; i < candies.length; i++) {
+            if (candies[i].equals(itemName) && itemAvailability[i] == true) {
+                System.out.println("You get your item");
+            }
+            else {
+                System.out.println("Sorry! That item is not available.");
+            }
+        }
+    }
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
