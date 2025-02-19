@@ -12,7 +12,31 @@ public class VendingMachineItem {
     public VendingMachineItem() {
         // Constructor left blank intentionally
     }
+    public static void addItem(String itemName, double itemPrice) {
+    // Create a new array with one additional space
+    String[] newCandies = new String[candies.length + 1];
+    double[] newPrices = new double[prices.length + 1];
+    boolean[] newAvailability = new boolean[itemAvailability.length + 1];
+
     
+    for (int i = 0; i < candies.length; i++) {
+        newCandies[i] = candies[i];
+        newPrices[i] = prices[i];
+        newAvailability[i] = itemAvailability[i];
+    }
+
+   
+    newCandies[newCandies.length - 1] = itemName;
+    newPrices[newPrices.length - 1] = itemPrice;
+    newAvailability[newAvailability.length - 1] = true; // New item is available
+
+    
+    candies = newCandies;
+    prices = newPrices;
+    itemAvailability = newAvailability;
+
+    System.out.println("Item " + itemName + " added to the vending machine.");
+}
     public double getPrice() {
         return price;
     }
