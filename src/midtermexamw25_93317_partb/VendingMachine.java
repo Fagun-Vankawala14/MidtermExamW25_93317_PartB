@@ -16,10 +16,10 @@ public class VendingMachine {
     public VendingMachine() {
         this.items = new ArrayList<>();
         // Adding initial items to the vending machine
-        items.add(new VendingMachineItem("chocolate bar", 1.50, true));
-        items.add(new VendingMachineItem("sour candy", 1.20, true));
-        items.add(new VendingMachineItem("soft drink", 1.80, true));
-        items.add(new VendingMachineItem("potato chips", 2.00, true));
+        items.add(new VendingMachineItem("COCA COLA", 5.50, true));
+        items.add(new VendingMachineItem("CHIPS", 1.20, true));
+        items.add(new VendingMachineItem("CHOCOLATE", 3.50, true));
+        items.add(new VendingMachineItem("GUM", 2.00, true));
     }
 
     // Display the vending machine menu
