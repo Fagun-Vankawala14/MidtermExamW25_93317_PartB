@@ -4,28 +4,34 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class VendingMachineItem {
-    public double price;
+    // Encapsulation: Variables are marked private to protect direct modification
+    private double price; 
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    // Encapsulation: Static arrays store item details, keeping them within the class
     
+    private static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
+    private static double[] prices = {1.50, 1.20, 1.80, 2.00};
+    private static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    
+    // Constructor Overloading - Polymorphism
     public VendingMachineItem() {
-        // Constructor left blank intentionally
+        // Default constructor
     }
     
-     public VendingMachineItem(double price) {
+    public VendingMachineItem(double price) {
         this.price = price;
     }
     
+    // Encapsulation: Getter and Setter methods to access private variables
     public double getPrice() {
         return price;
     }
     
     public void setPrice(double givenPrice) {
-        price = givenPrice;
+        this.price = givenPrice;
     }
     
+    //This method only displays the menu, keeping responsibilities separate
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
         for (int i = 0; i < candies.length; i++) {
@@ -48,6 +54,13 @@ public class VendingMachineItem {
             String newItem = sc.nextLine();
 
             System.out.println("Enter the price of the new item:");
+            
+            // Input validation for price
+            while (!sc.hasNextDouble()) {
+                System.out.println("Invalid input! Please enter a valid price:");
+                sc.next();
+            }
+            
             double newPrice = sc.nextDouble();
             sc.nextLine();
 
@@ -59,37 +72,34 @@ public class VendingMachineItem {
         
         displayMenu();
         sc.close();
-      }
+    }
     
-    public void addItem(String candy, double price){
-        
+    // The vending machine can now be extended by adding items without modifying existing code
+    public void addItem(String candy, double price) {
         candies = Arrays.copyOf(candies, candies.length + 1);
         prices = Arrays.copyOf(prices, prices.length + 1);
         itemAvailability = Arrays.copyOf(itemAvailability, itemAvailability.length + 1);
         
         candies[candies.length - 1] = candy;
         prices[prices.length - 1] = price;
-        itemAvailability[itemAvailability.length - 1] = true;}
-    
+        itemAvailability[itemAvailability.length - 1] = true;
+    }
 
-            
+    // This method is responsible only for displaying available items
     public void displayAvailableItems() {
+        System.out.println("Available items in the vending machine:");
         
-    System.out.println("Available items in the vending machine:");
-    
-    boolean anyAvailable = false;
+        boolean anyAvailable = false;
 
-    for (int i = 0; i < candies.length; i++) {
-        if (itemAvailability[i]) {
-            System.out.println((i + 1) + ". " + candies[i] + " - $" + prices[i]);
-            anyAvailable = true;
+        for (int i = 0; i < candies.length; i++) {
+            if (itemAvailability[i]) {
+                System.out.println((i + 1) + ". " + candies[i] + " - $" + prices[i]);
+                anyAvailable = true;
+            }
+        }
+
+        if (!anyAvailable) {
+            System.out.println("No items available.");
         }
     }
-
-    if (!anyAvailable) {
-        System.out.println(" No items available.");
-    }
 }
-
-    
-    }
