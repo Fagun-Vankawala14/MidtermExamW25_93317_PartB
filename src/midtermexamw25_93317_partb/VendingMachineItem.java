@@ -4,15 +4,19 @@ import java.util.Scanner;
 
 public class VendingMachineItem {
     public double price;
+    public String candyName;
+    public boolean availability;
 
     // Static arrays to hold the candy names, prices, and availability
     public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
-    // Constructor
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+    // Parameterized constructor
+    public VendingMachineItem(String candyName, double price, boolean availability) {
+        this.candyName = candyName;
+        this.price = price;
+        this.availability = availability;
     }
 
     // Getters and Setters for price
