@@ -10,7 +10,8 @@ public class VendingMachineItem {
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
     public VendingMachineItem() {
-        // Constructor left blank intentionally
+        
+                
     }
     
     public double getPrice() {
@@ -26,6 +27,28 @@ public class VendingMachineItem {
         for (int i = 0; i < 4; i++) {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
+    }
+    
+    public static void addItem(String name, double price, boolean availability) {
+        int index = finding_Empty_Space();
+        if (index != -1) {
+            candies[index] = name;
+            prices[index] = price;
+            itemAvailability[index] = availability;
+            System.out.println("Item added with name:" + name + " with price: $" + price);
+        } else {
+            System.out.println("Cannot add more items. Inv is full");
+        }
+    }
+    
+    
+    private static int finding_Empty_Space() {
+        for (int i = 0; i < candies.length; i++) {
+            if (candies[i] == null) { 
+                return i;
+            }
+        }
+        return -1; 
     }
        
     public static void main(String[] args) {
