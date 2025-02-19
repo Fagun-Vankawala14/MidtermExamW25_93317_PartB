@@ -11,9 +11,13 @@ public class VendingMachineItem {
     public static ArrayList<Double> prices = new ArrayList<>();
     public static ArrayList<Boolean> itemAvailability = new ArrayList<>();
 
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
-    }
+    public VendingMachineItem(String name, double givenPrice, boolean available) {
+    this.price = givenPrice;
+    candies.add(name);
+    prices.add(givenPrice);
+    itemAvailability.add(available);
+}
+
 
     public double getPrice() {
         return price;
