@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class VendingMachineItem {
     public double price;
-    public String name;
+    private String name;
+    private boolean availability;
     public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
@@ -12,15 +13,16 @@ public class VendingMachineItem {
     public VendingMachineItem(String name,double price  ) {
         this.name= name;
         this.price= price;
+        this.availability=availability;
         
                 
     }
     
-    public double getPrice() {
+    public double get_Price() {
         return price;
     }
     
-    public void setPrice(double givenPrice) {
+    public void set_Price(double givenPrice) {
         price = givenPrice;
     }
     
@@ -41,6 +43,22 @@ public class VendingMachineItem {
         } else {
             System.out.println("Cannot add more items. Inv is full");
         }
+    }
+    
+    public static void select_item( int itemIndex){
+        
+        if (itemIndex >= 0 && itemIndex < candies.length) {
+            if (itemAvailability[itemIndex]) {
+                System.out.println("You selected: " + candies[itemIndex] + " and the Price: $" + prices[itemIndex]);
+                System.out.println("Thanks you. Enjoy your " + candies[itemIndex] + ".");
+                itemAvailability[itemIndex] = false; // Mark the item as no longer available
+            } else {
+                System.out.println("Sorry, we don't have " + candies[itemIndex] );
+            }
+        } else {
+            System.out.println("Please choose a valid number.");
+        }
+        
     }
     
     
