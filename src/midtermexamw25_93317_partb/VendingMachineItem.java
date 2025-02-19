@@ -6,20 +6,24 @@ import java.util.Scanner;
 public class VendingMachineItem {
     private double price;
 
-    // Dynamic inventory lists
-    private static final ArrayList<String> items = new ArrayList<>();
-    private static final ArrayList<Double> prices = new ArrayList<>();
-    private static final ArrayList<Boolean> availability = new ArrayList<>();
+    
+    private static ArrayList<String> items = new ArrayList<>();
+    private static ArrayList<Double> prices = new ArrayList<>();
+    private static ArrayList<Boolean> availability = new ArrayList<>();
 
-    // Initialize inventory
+    
     static {
-        addItem("Chocolate Bar", 1.50);
-        addItem("Sour Candy", 1.20);
-        addItem("Soft Drink", 1.80);
-        addItem("Potato Chips", 2.00);
+        addItem("Chocolate Bar", 1.50, true);
+        addItem("Sour Candy", 1.20, true);
+        addItem("Soft Drink", 1.80, true);
+        addItem("Potato Chips", 2.00, true);
     }
 
     public VendingMachineItem() {}
+    
+     public VendingMachineItem(String itemName, double price, boolean isAvailable) {
+        addItem(itemName, price, isAvailable);
+    }
 
     public double getPrice() {
         return price;
@@ -29,23 +33,23 @@ public class VendingMachineItem {
         this.price = price;
     }
 
-    // Method to add an item
-    public static void addItem(String name, double price) {
+    
+      public static void addItem(String name, double price, boolean isAvailable) {
         items.add(name);
         prices.add(price);
-        availability.add(true);
+        availability.add(isAvailable);
     }
 
-    // Admin feature: Add new item to inventory
+    
     public static void addNewItem(Scanner sc) {
-        sc.nextLine(); // Consume newline
+        sc.nextLine(); 
         System.out.print("\nEnter item name: ");
         String newItem = sc.nextLine();
 
         System.out.print("Enter price: $");
         double newPrice = sc.nextDouble();
 
-        addItem(newItem, newPrice);
+        addItem(newItem, newPrice, true);
         System.out.println(newItem + " added successfully!");
     }
 
