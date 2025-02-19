@@ -27,9 +27,43 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
+    
+        public static void addItem(String name, double price) {
+        int newSize = candies.length + 1;
+        String[] newCandies = new String[newSize];
+        double[] newPrices = new double[newSize];
+        boolean[] newAvailability = new boolean[newSize];
+
+        System.arraycopy(candies, 0, newCandies, 0, candies.length);
+        System.arraycopy(prices, 0, newPrices, 0, prices.length);
+        System.arraycopy(itemAvailability, 0, newAvailability, 0, itemAvailability.length);
+
+        newCandies[newSize - 1] = name;
+        newPrices[newSize - 1] = price;
+        newAvailability[newSize - 1] = true;
+
+        candies = newCandies;
+        prices = newPrices;
+        itemAvailability = newAvailability;
+
+        System.out.println("Item added successfully: " + name + " - $" + price);
+    }
        
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
-      }
+        
+        System.out.println("Do you want to add a new item? (yes/no)");
+        String response = sc.next();
+        if (response.equalsIgnoreCase("yes")) {
+            System.out.print("Enter item name: ");
+            sc.nextLine(); // Consume newline
+            String itemName = sc.nextLine();
+            System.out.print("Enter item price: ");
+            double itemPrice = sc.nextDouble();
+            addItem(itemName, itemPrice);
+        }
+        
+        displayMenu();
+    }
 }
