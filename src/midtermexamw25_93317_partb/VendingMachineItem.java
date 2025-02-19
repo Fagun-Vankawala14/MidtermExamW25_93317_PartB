@@ -10,10 +10,14 @@ public class VendingMachineItem {
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
-    }
+    public VendingMachineItem(String name, double price, boolean available) {
+   this.price = price;
+   this.name = name;
+   this.available = available;    }
     
+ public String name;   
+public boolean available; 
+
     public double getPrice() {
         return price;
     }
