@@ -9,8 +9,11 @@ public class VendingMachineItem {
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
 
+    public VendingMachineItem() {
+    }
+
     public VendingMachineItem(double price) {
-        this.price = price; 
+        this.price = price;
     }
 
     public double getPrice() {
@@ -22,9 +25,10 @@ public class VendingMachineItem {
     }
 
     public static void displayMenu() {
-        System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < candies.length; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
+        System.out.println("Welcome to the vending machine, here is a list of the available candies:");
+        for (int i = 0; i < candies.length; i++) {  
+            System.out.println((i + 1) + ". " + candies[i] + " - $" + prices[i] + 
+                (itemAvailability[i] ? " (Available)" : " (Out of Stock)"));
         }
     }
 
@@ -49,6 +53,19 @@ public class VendingMachineItem {
         System.out.println("Item added successfully: " + name + " - $" + price);
     }
 
+    public static void selectItem(int itemNumber) {
+        if (itemNumber >= 1 && itemNumber <= candies.length) {
+            if (itemAvailability[itemNumber - 1]) {
+                System.out.println("You selected: " + candies[itemNumber - 1]);
+                itemAvailability[itemNumber - 1] = false; 
+            } else {
+                System.out.println("Sorry, this item is out of stock.");
+            }
+        } else {
+            System.out.println("Invalid selection.");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
@@ -57,13 +74,19 @@ public class VendingMachineItem {
         String response = sc.next();
         if (response.equalsIgnoreCase("yes")) {
             System.out.print("Enter item name: ");
-            sc.nextLine();
+            sc.nextLine(); 
             String itemName = sc.nextLine();
             System.out.print("Enter item price: ");
             double itemPrice = sc.nextDouble();
             addItem(itemName, itemPrice);
         }
 
+        displayMenu(); 
+
+        System.out.println("Enter the number of the item you want to buy: ");
+        int selectedItem = sc.nextInt();
+        selectItem(selectedItem);
+        
         displayMenu();
     }
 }
