@@ -1,5 +1,6 @@
 package midtermexamw25_93317_partb;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class VendingMachineItem {
@@ -32,4 +33,22 @@ public class VendingMachineItem {
         Scanner sc = new Scanner(System.in);
         displayMenu();
       }
+    
+    public static void addItem(String itemName, double itemPrice, boolean availability) {
+
+    candies = Arrays.copyOf(candies, candies.length + 1);
+    
+    prices = Arrays.copyOf(prices, prices.length + 1);
+    
+    itemAvailability = Arrays.copyOf(itemAvailability, itemAvailability.length + 1);
+
+    candies[candies.length - 1] = itemName;
+    
+    prices[prices.length - 1] = itemPrice;
+    
+    itemAvailability[itemAvailability.length - 1] = availability;
+
+    System.out.println(itemName + " is added to inventory");
+}
+
 }
