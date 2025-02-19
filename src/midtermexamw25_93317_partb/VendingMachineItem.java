@@ -27,7 +27,31 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
-       
+      public static void addItem(String newItem, double newPrice) {
+    int newSize = candies.length + 1;
+
+    // Expand arrays
+    String[] newCandies = new String[newSize];
+    double[] newPrices = new double[newSize];
+    boolean[] newAvailability = new boolean[newSize];
+
+    for (int i = 0; i < candies.length; i++) {
+        newCandies[i] = candies[i];
+        newPrices[i] = prices[i];
+        newAvailability[i] = itemAvailability[i];
+    }
+
+    newCandies[newSize - 1] = newItem;
+    newPrices[newSize - 1] = newPrice;
+    newAvailability[newSize - 1] = true; 
+
+    // Assign back to static variables
+    candies = newCandies;
+    prices = newPrices;
+    itemAvailability = newAvailability;
+
+    System.out.println("Item added successfully!");
+} 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
