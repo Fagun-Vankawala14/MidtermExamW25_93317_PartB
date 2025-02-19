@@ -1,3 +1,12 @@
+//Single responsibility principle is used separate classes are created so that one class is 
+//        responsible for only one thing.
+
+
+
+
+
+
+
 package midtermexamw25_93317_partb;
 
 import java.util.Scanner;
@@ -53,62 +62,18 @@ public class VendingMachineItem {
         prices.add(itemPrice);
         itemAvailability.add(availability);
     }
-       public static void handleCustomerSelection(Scanner sc) {
-        System.out.println("Customer, would you like to select an item? (yes/no)");
-        String customerChoice = sc.nextLine();
-
-        if (customerChoice.equalsIgnoreCase("yes")) {
-            System.out.println("Enter the number of the item you want to purchase:");
-            int selectedItem = sc.nextInt();
-            sc.nextLine();  
-
-            
-            if (selectedItem < 1 || selectedItem > candies.size()) {
-                System.out.println("Invalid selection.");
-            } else { 
-                int itemIndex = selectedItem - 1;
-                if (itemAvailability.get(itemIndex)) {
-                    System.out.println("You selected " + candies.get(itemIndex) + " for $" + prices.get(itemIndex));
-                    System.out.println("Enjoy!");
-                    // Set the item to unavailable after purchase
-                    itemAvailability.set(itemIndex, false);
-                } else {
-                    System.out.println("Sorry,not available.");
-                }
-            }
-        } else {
-            System.out.println("Success");
-        }
-    }
+      
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         VendingMachineItem vendingMachine = new VendingMachineItem();
         displayMenu();
-         handleCustomerSelection(sc);
+         Customer customer = new Customer(vendingMachine);
+         Admin admin = new Admin(vendingMachine);
+        Scanner Scanner = null;
+         
+         admin.addNewItem();
 //        Asking to add
-        System.out.println("Admin: Would you like to add a new item to the inventory? (yes/no)");
-        String adminChoice = sc.nextLine();
-        
-        if (adminChoice.equalsIgnoreCase("yes")) {
-            System.out.println("Enter the name of the new item:");
-            String newItem = sc.nextLine();
-            
-            System.out.println("Enter the price of the new item:");
-            double newPrice = sc.nextDouble();
-            if (newPrice < 0) {
-                System.out.println("The price must be a positive value.");
-                return;
-            }
-            boolean availability = true;
-            
-            addItem(newItem, newPrice, availability);
-            System.out.println("New item added successfully!");
-          
-            displayMenu();
-        } else {
-            System.out.println("No new item added.");
-        }
-        
+       
       }
 }
