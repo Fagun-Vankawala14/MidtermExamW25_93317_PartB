@@ -37,8 +37,9 @@ private static boolean[] itemAvailability = {true, true, true, true};
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
         for (int i = 0; i < candies.length; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
-        }
+            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i] +
+                           (itemAvailability[i] ? " [Available]" : " [Out of Stock]")); // ✅ Availability status
+    }
     }
     
     public static void showMenu() {
@@ -74,6 +75,7 @@ private static boolean[] itemAvailability = {true, true, true, true};
         if (itemNumber > 0 && itemNumber <= candies.length) {
             if (itemAvailability[itemNumber - 1]) {
                 System.out.println("You selected: " + candies[itemNumber - 1]);
+                itemAvailability[itemNumber - 1] = false;
                 return true;
             } else {
                 System.out.println("Sorry, this item is out of stock.");
@@ -89,8 +91,7 @@ private static boolean[] itemAvailability = {true, true, true, true};
         boolean running = true;
         
         while (running) {
-            showMenu();  // ✅ Using showMenu() instead of displayMenu()
-
+            showMenu();  
             System.out.println("\nOptions:");
             System.out.println("1. Select an item");
             System.out.println("2. Add a new item");
@@ -111,8 +112,12 @@ private static boolean[] itemAvailability = {true, true, true, true};
                     String newItem = sc.nextLine();
                     System.out.print("Enter new item price: ");
                     double newPrice = sc.nextDouble();
+                    while (newPrice < 0) {
+                    System.out.println("Price cannot be negative. Please enter a valid price:");
+                    newPrice = sc.nextDouble();
+                    }
                     addItem(newItem, newPrice);
-                    break;
+                     break;
 
                 case 3:
                     System.out.println("Thank you for using the vending machine. Goodbye!");
@@ -123,10 +128,10 @@ private static boolean[] itemAvailability = {true, true, true, true};
                     System.out.println("Invalid choice. Please try again.");
             }
 
-            System.out.println(); // ✅ For better spacing in the UI
+            System.out.println(); 
         }
 
-        sc.close(); // ✅ Close Scanner resource
+        sc.close(); 
     }
 }
 
