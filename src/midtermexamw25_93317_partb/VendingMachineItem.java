@@ -2,6 +2,7 @@ package midtermexamw25_93317_partb;
 
 import java.util.Scanner;
 
+
 public class VendingMachineItem {
     public double price;
     
@@ -32,4 +33,23 @@ public class VendingMachineItem {
         Scanner sc = new Scanner(System.in);
         displayMenu();
       }
+    
+       
+    public static void addNewItem() {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("Enter the name of the new item:");
+    String newItem = sc.nextLine();
+    
+    System.out.println("Enter the price of the new item:");
+    double newPrice = sc.nextDouble();
+    sc.nextLine(); // Consume the leftover newline
+    
+    candies.add(newItem);
+    prices.add(newPrice);
+    itemAvailability.add(true);
+    
+    System.out.println("New item added successfully!");
+}
+
 }
