@@ -64,6 +64,31 @@ public class VendingMachineItem {
         System.out.println("New item added successfully: " + candyName + " - $" + candyPrice + " (Available: " + availability + ")");
     }
 
+    // Method for customers to select an item by checking its availability
+    public static void selectItem(Scanner sc) {
+        System.out.println("\nCustomer: Please select an item by entering its number:");
+
+        // Get customer input for item selection
+        int selection = sc.nextInt();
+
+        // Validate the selection
+        if (selection < 1 || selection > candies.length) {
+            System.out.println("Invalid selection. Please choose a valid item.");
+        } else {
+            // Check if the selected item is available
+            int index = selection - 1;
+            if (itemAvailability[index]) {
+                // Item is available, proceed with the selection
+                System.out.println("You selected: " + candies[index] + " - $" + prices[index]);
+                itemAvailability[index] = false; // Update availability to false after selection
+                System.out.println("Thank you for your purchase! The item is now marked as unavailable.");
+            } else {
+                // Item is not available
+                System.out.println("Sorry, the item '" + candies[index] + "' is currently unavailable.");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
@@ -86,6 +111,14 @@ public class VendingMachineItem {
         
         // Display the updated menu with the new item
         System.out.println("\nUpdated menu after adding new item:");
+        displayMenu();
+        
+        // Customer functionality to select an item
+        sc.nextLine(); // Consume newline left by nextDouble and nextBoolean
+        selectItem(sc);
+        
+        // Display updated menu after selection
+        System.out.println("\nUpdated menu after item selection:");
         displayMenu();
     }
 }
