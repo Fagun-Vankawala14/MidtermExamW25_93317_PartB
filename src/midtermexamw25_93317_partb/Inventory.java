@@ -21,7 +21,6 @@ public class Inventory {
     // Add a new item to the inventory
     public void addItem(Item newItem) {
         items.add(newItem);
-        System.out.println("New item added: " + newItem);
     }
 
     // List all items in the inventory
@@ -31,5 +30,14 @@ public class Inventory {
             System.out.println(item);
         }
     }
-}
 
+    // Method to get an item by name
+    public Item getItemByName(String name) {
+        for (Item item : items) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;  // Return null if the item is not found
+    }
+}

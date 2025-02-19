@@ -21,6 +21,11 @@ public class Item {
         this.quantity = quantity;
     }
 
+    // Method to check if the item is available
+    public boolean isAvailable() {
+        return quantity > 0;
+    }
+
     // Getters and setters
     public String getName() {
         return name;
