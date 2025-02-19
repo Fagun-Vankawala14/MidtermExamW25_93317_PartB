@@ -8,11 +8,27 @@ public class VendingMachineItem {
     public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+    public static String[] newItems = {"Item One","Item Two"};
+
+    public VendingMachineItem(double price) {
+        this.price = price;
     }
     
+    public static String[] getCandies() {
+        return candies;
+    }
+
+    public static void setCandies(String[] candies) {
+        VendingMachineItem.candies = candies;
+    }
+
+    public static String[] getNewItems() {
+        return newItems;
+    }
+
+    public static void setNewItems(String[] newItems) {
+        VendingMachineItem.newItems = newItems;
+    }
     public double getPrice() {
         return price;
     }
@@ -27,9 +43,18 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
+    
+    public static void addInventoryItem()
+    {
+       System.out.println("Please enter something new");
+       Scanner newItem = new Scanner(System.in);
+       System.out.println("The new Item availible is: " + newItem);
+    
+    };
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        addInventoryItem();
       }
 }
