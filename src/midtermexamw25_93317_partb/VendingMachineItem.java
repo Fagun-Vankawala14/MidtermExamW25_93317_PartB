@@ -12,8 +12,9 @@ public class VendingMachineItem {
     public static List<Double> prices = new ArrayList<>(Arrays.asList(1.50, 1.20, 1.80, 2.00));
     public static List<Boolean> itemAvailability = new ArrayList<>(Arrays.asList(true, true, true, true));
     
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+    
+    public VendingMachineItem(double price) {
+        this.price = price;
     }
     
     public static void addItem(String candy, double price, boolean available) {
