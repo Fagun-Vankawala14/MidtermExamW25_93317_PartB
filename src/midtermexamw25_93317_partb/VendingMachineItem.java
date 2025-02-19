@@ -4,20 +4,20 @@ import java.util.Scanner;
 
 public class VendingMachineItem {
     public double price;
-    private String name;
-    private boolean availability;
+    private String name; // adding a private variable name
+    private boolean availability; // adding another private varaible availability
     public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
+    // making default constructor to parameterized constructor with parameters name, availability and price
     public VendingMachineItem(String name,double price  ) {
         this.name= name;
         this.price= price;
-        this.availability=availability;
+        this.availability= availability;
         
                 
     }
-    
+    // adding getter and setters for price
     public double get_Price() {
         return price;
     }
@@ -32,7 +32,7 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
-    
+    // adding a method  named add_item method 
     public static void addItem(String name, double price, boolean availability) {
         int index = finding_Empty_Space();
         if (index != -1) {
@@ -44,7 +44,7 @@ public class VendingMachineItem {
             System.out.println("Cannot add more items. Inv is full");
         }
     }
-    
+    // adding a select_item method
     public static void select_item( int itemIndex){
         
         if (itemIndex >= 0 && itemIndex < candies.length) {
