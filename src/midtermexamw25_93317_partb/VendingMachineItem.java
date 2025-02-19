@@ -9,11 +9,14 @@ public class VendingMachineItem {
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+    public VendingMachineItem(String name, double price) {
+    this.name = name;
+    this.price = price;
+    this.availability = true; 
+
     }
     public static void addItem(String itemName, double itemPrice) {
-    // Create a new array with one additional space
+   
     String[] newCandies = new String[candies.length + 1];
     double[] newPrices = new double[prices.length + 1];
     boolean[] newAvailability = new boolean[itemAvailability.length + 1];
