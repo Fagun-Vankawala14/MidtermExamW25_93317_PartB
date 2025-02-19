@@ -63,6 +63,19 @@ public class VendingMachineItem {
         System.out.println("No more space to add new items.");
     }
     //end
+    
+    
+    public static void selectItem(int itemIndex) {
+        if (itemIndex >= 0 && itemIndex < candies.length) {
+            if (itemAvailability[itemIndex]) {
+                System.out.println("You have selected: " + candies[itemIndex] + ". Please proceed to payment.");
+            } else {
+                System.out.println("Sorry, " + candies[itemIndex] + " is currently unavailable. Please select another item.");
+            }
+        } else {
+            System.out.println("Invalid item selection. Please try again.");
+        }
+    }
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
