@@ -14,6 +14,10 @@ public class VendingMachineItem {
         // Constructor left blank intentionally
     }
     
+     public VendingMachineItem(double price) {
+        this.price = price;
+    }
+    
     public double getPrice() {
         return price;
     }
