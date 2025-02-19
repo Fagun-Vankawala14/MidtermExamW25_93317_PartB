@@ -14,8 +14,9 @@ public class VendingMachineItem {
     static ArrayList<Double> prices = new ArrayList<>();
     static ArrayList<Boolean> itemAvailability = new ArrayList<>();
     
-    public VendingMachineItem() {
+    public VendingMachineItem(double price) {
         // Constructor left blank intentionally
+        this.price = price;
     }
     
     public double getPrice() {
