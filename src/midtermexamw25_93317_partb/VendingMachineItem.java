@@ -52,11 +52,20 @@ public class VendingMachineItem {
        Scanner newItem = new Scanner(System.in);
        System.out.println("The new Item availible is: " + newItem);
     
+    }
+    
+    public static void checkAvailability()
+    {
+    System.out.println("The following items are availible: ");
+    for (int i = 0; i < 4; i++) {
+            System.out.println( "The candy: " + candies[i] + " Has the current availability status of:  " + itemAvailability[i]);
+        } 
     };
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        checkAvailability();
         addInventoryItem();
       }
 }
