@@ -1,3 +1,5 @@
+// Encapsulation: Private fields with getters/setters
+// SRP: Inventory handles items, Customer only selects items
 package midtermexamw25_93317_partb;
 
 public class VendingMachineItem {
