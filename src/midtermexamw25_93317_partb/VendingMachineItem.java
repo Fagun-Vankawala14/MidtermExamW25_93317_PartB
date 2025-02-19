@@ -71,5 +71,25 @@ public class VendingMachineItem {
         prices[prices.length - 1] = price;
         itemAvailability[itemAvailability.length - 1] = true;}
     
-  
+
+            
+    public void displayAvailableItems() {
+        
+    System.out.println("Available items in the vending machine:");
+    
+    boolean anyAvailable = false;
+
+    for (int i = 0; i < candies.length; i++) {
+        if (itemAvailability[i]) {
+            System.out.println((i + 1) + ". " + candies[i] + " - $" + prices[i]);
+            anyAvailable = true;
+        }
+    }
+
+    if (!anyAvailable) {
+        System.out.println(" No items available.");
+    }
+}
+
+    
     }
