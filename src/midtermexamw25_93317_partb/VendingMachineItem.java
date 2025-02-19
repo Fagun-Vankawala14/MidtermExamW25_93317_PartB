@@ -33,9 +33,16 @@ public boolean available;
         }
     }
        
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        System.out.print("Enter the item number to select: ");
+        int itemNumber = sc.nextInt();
+        selectItem(itemNumber);
       }
     
     public static void addItem(String itemName, double itemPrice, boolean availability) {
@@ -54,5 +61,20 @@ public boolean available;
 
     System.out.println(itemName + " is added to inventory");
 }
+ // Method  to select an item by checking its availability
+    
+    public static void selectItem(int itemNumber) {
+        if (itemNumber < 1 || itemNumber > candies.length) {
+            System.out.println("Invalid item number.");
+            return;
+        }
+        int index = itemNumber - 1;
+        if (itemAvailability[index]) {
+            System.out.println("You selected: " + candies[index] + " for $" + prices[index]);
+        } else {
+            System.out.println(candies[index] + " is currently out of stock.");
+        }
+    }
 
+ 
 }
